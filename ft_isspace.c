@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdantzer <rdantzer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmangili <rmangili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 16:37:37 by rdantzer          #+#    #+#             */
-/*   Updated: 2014/11/12 16:07:45 by rdantzer         ###   ########.fr       */
+/*   Created: 2015/01/02 00:12:37 by rmangili          #+#    #+#             */
+/*   Updated: 2015/01/02 00:12:56 by rmangili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int				ft_isspace(int c)
 {
-	return (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r' || \
-	c == ' ');
+		return (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r' || \
+					c == ' ');
 }

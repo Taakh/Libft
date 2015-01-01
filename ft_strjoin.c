@@ -3,26 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmangili <rmangili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rdantzer <rdantzer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/19 01:29:47 by rmangili          #+#    #+#             */
-/*   Updated: 2014/11/20 20:13:50 by rmangili         ###   ########.fr       */
+/*   Created: 2014/11/09 21:12:56 by rdantzer          #+#    #+#             */
+/*   Updated: 2014/11/17 19:26:34 by rdantzer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char			*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*news;
-	int		tail;
+	size_t		len;
+	char		*p;
 
-	tail = ft_strlen((char *)s1) + ft_strlen((char *)s2);
-	news = (char *)malloc(sizeof(*news) * (tail + 1));
-	if (!news)
-		return (NULL);
-	ft_strcpy(news, s1);
-	ft_strcat(news, s2);
-	return (news);
+	if (s1 && s2)
+	{
+		len = ft_strlen(s1) + ft_strlen(s2);
+		p = ft_strnew(len);
+		p = ft_strdup(s1);
+		p = ft_strcat(p, s2);
+		return (p);
+	}
+	else if (s2)
+		return (ft_strdup(s2));
+	else if (s1)
+		return (ft_strdup(s1));
+	else
+		return (0);
 }

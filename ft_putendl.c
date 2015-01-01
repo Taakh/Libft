@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmangili <rmangili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rdantzer <rdantzer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 13:13:54 by rmangili          #+#    #+#             */
-/*   Updated: 2014/11/11 12:33:03 by rmangili         ###   ########.fr       */
+/*   Updated: 2015/01/01 23:44:48 by rdantzer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "libft.h"
 
-void	ft_putendl(char *str)
+void	ft_putendl(char const *str)
 {
 	int		i;
 
@@ -21,7 +21,7 @@ void	ft_putendl(char *str)
 	while (str[i] != '\0')
 	{
 		ft_putchar(str[i]);
-		ft_putchar('\n');
 		i++;
 	}
+	ft_putchar('\n');
 }

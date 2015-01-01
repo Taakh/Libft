@@ -3,34 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmangili <rmangili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rdantzer <rdantzer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/09 16:01:48 by rmangili          #+#    #+#             */
-/*   Updated: 2014/11/18 20:40:09 by rmangili         ###   ########.fr       */
+/*   Created: 2014/11/11 13:15:21 by rdantzer          #+#    #+#             */
+/*   Updated: 2014/12/17 17:53:38 by rdantzer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
 char	*ft_strstr(const char *s1, const char *s2)
 {
-	int		i;
-	int		y;
+	char	*str;
+	size_t	len;
 
-	i = 0;
-	y = 0;
-	if (!(s2[y]))
-		return ((char *)s1);
-	while (s1[i])
+	str = (char *)s1;
+	len = ft_strlen(s2);
+	if (*str == 0)
+		return (str);
+	while (*str)
 	{
-		if (s2[y] == s1[i])
-			y++;
-		else if (s1[i] != s2[y])
-			y = 0;
-		if (!(s2[y]))
-			return ((char *)s1 + i - ft_strlen((char *)s2) + 1);
-		i++;
+		if (ft_strncmp(str, s2, len) == 0)
+			return (str);
+		str++;
 	}
 	return (NULL);
 }

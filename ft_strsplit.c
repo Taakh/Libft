@@ -3,71 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmangili <rmangili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rdantzer <rdantzer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/26 17:47:03 by rmangili          #+#    #+#             */
-/*   Updated: 2014/11/26 19:09:02 by rmangili         ###   ########.fr       */
+/*   Created: 2014/11/12 01:36:48 by rdantzer          #+#    #+#             */
+/*   Updated: 2014/11/12 16:08:45 by rdantzer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-static int		ft_cnt_parts(const char *s, char c)
+static size_t	word_count(char const *s, char c)
 {
-	int		cnt;
-	int		in_substring;
+	int			is_in_word;
+	int			len;
 
-	in_substring = 0;
-	cnt = 0;
-	while (*s != '\0')
-	{
-		if (in_substring == 1 && *s == c)
-			in_substring = 0;
-		if (in_substring == 0 && *s != c)
-		{
-			in_substring = 1;
-			cnt++;
-		}
-		s++;
-	}
-	return (cnt);
-}
-
-static int		ft_wlen(const char *s, char c)
-{
-	int		len;
-
+	is_in_word = 0;
 	len = 0;
-	while (*s != c && *s != '\0')
+	while (*s)
 	{
-		len++;
+		if (is_in_word == 0 && *s != c)
+		{
+			len++;
+			is_in_word = 1;
+		}
+		if (is_in_word && *s == c)
+			is_in_word = 0;
 		s++;
 	}
 	return (len);
 }
 
+static void		fill_array(char **array, char const *s, char c)
+{
+	int			is_in_word;
+	int			start;
+	int			len;
+
+	is_in_word = 0;
+	len = 0;
+	start = 0;
+	while (s[len])
+	{
+		if (is_in_word == 0 && s[len] != c)
+		{
+			is_in_word = 1;
+			start = len;
+		}
+		if (is_in_word && s[len] == c)
+		{
+			is_in_word = 0;
+			*array = ft_strsub(s, start, len - start);
+			++array;
+		}
+		++len;
+	}
+	if (is_in_word == 1)
+		*array = ft_strsub(s, start, len - start);
+}
+
 char			**ft_strsplit(char const *s, char c)
 {
-	char	**t;
-	int		nb_word;
-	int		index;
+	char		**p;
+	size_t		len;
 
-	index = 0;
-	nb_word = ft_cnt_parts((const char *)s, c);
-	t = (char **)malloc(sizeof(*t) * (ft_cnt_parts((const char *)s, c) + 1));
-	if (t == NULL)
-		return (NULL);
-	while (nb_word--)
-	{
-		while (*s == c && *s != '\0')
-			s++;
-		t[index] = ft_strsub((const char *)s, 0, ft_wlen((const char *)s, c));
-		if (t[index] == NULL)
-			return (NULL);
-		s = s + ft_wlen(s, c);
-		index++;
-	}
-	t[index] = NULL;
-	return (t);
+	if (!s)
+		return (0);
+	len = word_count(s, c);
+	p = (char **)malloc(sizeof(char *) * len + 2);
+	if (p)
+		fill_array(p, s, c);
+	p[len] = 0;
+	return (p);
 }

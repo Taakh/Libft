@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rmangili <rmangili@student.42.fr>          +#+  +:+       +#+         #
+#    By: rdantzer <rdantzer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/14 13:23:40 by rmangili          #+#    #+#              #
-#    Updated: 2014/11/26 18:43:30 by rmangili         ###   ########.fr        #
+#    Updated: 2015/01/01 23:53:09 by rdantzer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,59 +62,11 @@ ft_strmapi.c \
 ft_strncmp.c \
 ft_strnstr.c \
 ft_strstr.c \
-ft_strsplit.c
+ft_strsplit.c \
+ft_putendl_fd.c \
+ft_isspace.c
 
-OBJ = ft_atoi.o \
-ft_isalpha.o \
-ft_isdigit.o \
-ft_putchar.o \
-ft_putnbr.o \
-ft_strcat.o \
-ft_strcmp.o \
-ft_strdup.o \
-ft_tolower.o \
-ft_isalnum.o \
-ft_isascii.o \
-ft_isprint.o \
-ft_putendl.o \
-ft_putstr.o \
-ft_strchr.o \
-ft_strcpy.o \
-ft_strlen.o \
-ft_toupper.o \
-ft_strrchr.o \
-ft_strclr.o \
-ft_strncat.o \
-ft_strncpy.o \
-ft_strnew.o \
-ft_putchar_fd.o \
-ft_putnbr_fd.o \
-ft_putstr_fd.o \
-ft_striter.o \
-ft_striteri.o \
-ft_bzero.o \
-ft_memset.o \
-ft_memmove.o \
-ft_memdel.o \
-ft_memcpy.o \
-ft_memalloc.o \
-ft_memchr.o \
-ft_memcmp.o \
-ft_memccpy.o \
-ft_strlcat.o \
-ft_strtrim.o \
-ft_strsub.o \
-ft_strjoin.o \
-ft_itoa.o \
-ft_strdel.o \
-ft_strequ.o \
-ft_strnequ.o \
-ft_strmap.o \
-ft_strmapi.o \
-ft_strncmp.o \
-ft_strnstr.o \
-ft_strstr.o \
-ft_strsplit.o
+OBJ = $(SRC:.c=.o) 
 
 FLAGS = -Wall -Werror -Wextra
 

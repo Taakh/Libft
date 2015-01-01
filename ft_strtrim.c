@@ -3,63 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmangili <rmangili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rdantzer <rdantzer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/19 04:20:13 by rmangili          #+#    #+#             */
-/*   Updated: 2014/11/20 20:14:32 by rmangili         ###   ########.fr       */
+/*   Created: 2014/11/09 21:12:22 by rdantzer          #+#    #+#             */
+/*   Updated: 2015/01/01 23:52:00 by rdantzer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <string.h>
 #include "libft.h"
 
-int			ft_spacetrim(char *s)
+char			*ft_strtrim(char const *s)
 {
-	size_t	i;
-	size_t	espace;
-	size_t	len;
+	size_t		start;
+	int			i;
+	int			len;
 
-	len = ft_strlen(s);
+	start = 0;
 	i = 0;
-	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+	if (s)
 	{
-		i++;
-	}
-	espace = i;
-	if (s[i] != '\0')
-	{
-		i = len - 1;
-		while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+		len = ft_strlen(s);
+		while (i >= 0 && ft_isspace(s[i]))
 		{
-			i--;
-			espace++;
+			len--;
+			i++;
 		}
+		while (s[start] && ft_isspace(s[start]))
+			start++;
+		len -= start;
+		if (len < 0)
+			return (ft_strdup(""));
+		return (ft_strsub(s, start, len));
 	}
-	return (len - espace);
-}
-
-char		*ft_strtrim(char const *s)
-{
-	char	*string;
-	size_t	i;
-	size_t	j;
-	size_t	space_trim;
-
-	i = 0;
-	j = 0;
-	space_trim = ft_spacetrim((char *)s);
-	string = (char *)malloc(sizeof(*string) * (space_trim + 1));
-	if (string == NULL)
-		return (NULL);
-	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
-		i++;
-	while (j < space_trim)
-	{
-		string[j] = s[i];
-		j++;
-		i++;
-	}
-	string[j] = '\0';
-	return (string);
+	return (0);
 }

@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmangili <rmangili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rdantzer <rdantzer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/06 16:28:10 by rmangili          #+#    #+#             */
-/*   Updated: 2014/11/20 04:37:58 by rmangili         ###   ########.fr       */
+/*   Created: 2014/11/03 14:06:19 by rdantzer          #+#    #+#             */
+/*   Updated: 2015/01/01 23:46:05 by rdantzer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "Libft.h"
+#include "libft.h"
 
-char		*ft_strdup(const char *s1)
+void			ft_putendl_fd(char const *s, int fd)
 {
-	char	*s2;
-
-	s2 = (char*)malloc(sizeof(char) * ft_strlen((char *)s1) + 1);
-	if (s2 != NULL)
-	{
-		ft_strcpy (s2, s1);
-	}
-	else
-	{
-		return (NULL);
-	}
-	return (s2);
+	if (s != NULL)
+		ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }
